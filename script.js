@@ -9,16 +9,17 @@ const mates = [{ name: "David", age: 40 }, { name: "Marco", age: 62 }];
 btn.onclick = function () {
   let name = nameInput.value.trim();
   let age = parseInt(ageInput.value);
-  let match = mates.find(mate => mate.name === name && mate.age === age);
+  let mate = mates.find(mate => mate.name === name);
   
-  if (isNaN(age) || age === null) {
-    paragraph.innerHTML = "Age invalide, veuillez saisir un nombre";
+  if (isNaN(age)) {
+    paragraph.innerHTML = "Invalid age";
   } else if (age >= 130 || age <= 0) {
     paragraph.innerHTML = "Ceci n'est pas un âge humain";
-  } else if (!match) {
+  } else if (!mate) {
+    paragraph.innerHTML = "Utilisateur non reconnu";
+  } else if (mate.age !== age) {
     paragraph.innerHTML = "Mytho !";
   } else {
-    paragraph.innerHTML = `Votre nom est ${name} et vous avez ${age} ans`;
+    paragraph.innerHTML = `My name is ${name} and I am ${age} years old`;
   }
 };
-
